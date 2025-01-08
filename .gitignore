@@ -1,0 +1,10 @@
+# ./.gitignore
+
+# venv
+movie_rec_env
+
+# pyton generated
+.idea
+
+# project files
+data
