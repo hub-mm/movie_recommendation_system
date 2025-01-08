@@ -5,6 +5,7 @@ movie_rec_env
 
 # pyton generated
 .idea
+__pycache__
 
 # project files
 data
