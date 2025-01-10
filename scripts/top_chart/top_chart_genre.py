@@ -1,9 +1,9 @@
-# ./scripts/top_chart_genre.py
+# ./scripts/top_chart/top_chart_genre.py
+from scripts.data_management.data_preprocess_movies_metadata import preprocess
 import pandas as pd
-from data_preprocess import preprocess
 
 
-def top_chart_genre():
+def movies_sorted_genre():
     df = preprocess()
     s = df.apply(lambda x: pd.Series(x['genres']), axis=1).stack().reset_index(level=1, drop=True)
     s.name = 'genre'
@@ -11,14 +11,14 @@ def top_chart_genre():
 
     return gen_df
 
-def build_chart(genre, percentile=0.85, top_chart_num=250):
-    df = top_chart_genre()
+def build_genre_chart(genre, top_chart_num=250):
+    df = movies_sorted_genre()
     df = df[df['genre'] == genre.capitalize()]
 
     vote_counts = df[df['vote_count'].notnull()]['vote_count'].astype('float')
     vote_av = df[df['vote_average'].notnull()]['vote_average'].astype('float')
     vote_av_mean = vote_av.mean()
-    min_votes = vote_counts.quantile(percentile)
+    min_votes = vote_counts.quantile(0.85)
 
     qualified = df[
         (df['vote_count'].astype('float') >= min_votes) & (df['vote_count'].notnull()) & (df['vote_average'].notnull())
