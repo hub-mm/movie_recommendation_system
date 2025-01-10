@@ -1,29 +1,19 @@
-# ./scripts/top_chart_genre_data.py
-import pandas as pd
-from preprocess_data import preprocess
+# ./scripts/top_chart.py
+from data_preprocess import preprocess
 
 
-def top_chart_genre():
+def top_chart(top_chart_num=250):
     df = preprocess()
-    s = df.apply(lambda x: pd.Series(x['genres']), axis=1).stack().reset_index(level=1, drop=True)
-    s.name = 'genre'
-    gen_df = df.drop('genres', axis=1).join(s)
-
-    return gen_df
-
-def build_chart(genre, percentile=0.85, top_chart_num=250):
-    df = top_chart_genre()
-    df = df[df['genre'] == genre.capitalize()]
 
     vote_counts = df[df['vote_count'].notnull()]['vote_count'].astype('float')
     vote_av = df[df['vote_average'].notnull()]['vote_average'].astype('float')
     vote_av_mean = vote_av.mean()
-    min_votes = vote_counts.quantile(percentile)
+    min_votes = vote_counts.quantile(0.95)
 
     qualified = df[
         (df['vote_count'].astype('float') >= min_votes) & (df['vote_count'].notnull()) & (df['vote_average'].notnull())
-        ][
-        ['title', 'release_date', 'vote_count', 'vote_average', 'popularity']
+    ][
+        ['title', 'release_date', 'vote_count', 'vote_average', 'popularity', 'genres']
     ]
     qualified['vote_count'] = qualified['vote_count'].astype('float')
     qualified['vote_average'] = qualified['vote_average'].astype('float')
