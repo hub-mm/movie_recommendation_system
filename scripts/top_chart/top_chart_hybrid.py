@@ -38,9 +38,6 @@ def build_chart_hybrid(user_id=1, title='batman', amount=30):
     else:
         idx = val
 
-    tmdb_id = df_id_map.loc[title]['id']
-    movie_id = df_id_map.loc[title]['moviesId']
-
     sim_scores = list(enumerate(cosine_sim[int(idx)]))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     sim_scores = sim_scores[1:amount + 1]
@@ -50,7 +47,6 @@ def build_chart_hybrid(user_id=1, title='batman', amount=30):
         ['title', 'release_date', 'vote_count', 'vote_average', 'popularity', 'genres', 'cast', 'id']
     ]
     df['est'] = df['id'].apply(lambda x: svd.predict(user_id, int(indices_map.loc[x]['moviesId']), r_ui=None).est)
-    predictions = df['id'].apply(lambda x: svd.predict(user_id, indices_map.loc[x]['moviesId'], r_ui=None).est)
 
     df['title'] = df['title'].fillna('').str.title()
     movies = df.sort_values('est', ascending=False)
