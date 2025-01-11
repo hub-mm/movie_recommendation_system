@@ -1,5 +1,5 @@
 # ./scripts/top_chart/top_chart_similar.py
-from scripts.data_management.data_merge import preprocess_df
+from scripts.data_management.data_merge_similar import preprocess_df
 import os
 import pickle
 import pandas as pd
