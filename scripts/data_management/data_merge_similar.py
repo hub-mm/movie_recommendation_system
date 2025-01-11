@@ -1,4 +1,4 @@
-# ./scripts/data_management/data_merge.py
+# ./scripts/data_management/data_merge_similar.py
 from scripts.data_management.data_preprocess_movies_metadata import preprocess_movies_md
 from scripts.data_management.data_preprocess_credits import preprocess_credits
 from scripts.data_management.data_preprocess_keywords import preprocess_keywords
