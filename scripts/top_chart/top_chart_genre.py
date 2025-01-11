@@ -1,10 +1,10 @@
 # ./scripts/top_chart/top_chart_genre.py
-from scripts.data_management.data_preprocess_movies_metadata import preprocess
+from scripts.data_management.data_preprocess_movies_metadata import preprocess_movies_md
 import pandas as pd
 
 
 def movies_sorted_genre():
-    df = preprocess()
+    df = preprocess_movies_md()
     s = df.apply(lambda x: pd.Series(x['genres']), axis=1).stack().reset_index(level=1, drop=True)
     s.name = 'genre'
     gen_df = df.drop('genres', axis=1).join(s)
