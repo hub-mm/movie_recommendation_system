@@ -1,5 +1,5 @@
 # ./scripts/data_management/data_merge.py
-from scripts.data_management.data_preprocess_movies_metadata import preprocess
+from scripts.data_management.data_preprocess_movies_metadata import preprocess_movies_md
 from scripts.data_management.data_preprocess_credits import preprocess_credits
 from scripts.data_management.data_preprocess_keywords import preprocess_keywords
 import pandas as pd
@@ -19,7 +19,7 @@ def get_directors(x):
     return np.nan
 
 def preprocess_df():
-    df = preprocess()
+    df = preprocess_movies_md()
 
     vote_counts = df[df['vote_count'].notnull()]['vote_count'].astype('float')
     min_votes = vote_counts.quantile(0.60)
