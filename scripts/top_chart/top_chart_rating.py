@@ -1,9 +1,9 @@
 # ./scripts/top_chart/top_chart_rating.py
-from scripts.data_management.data_preprocess_movies_metadata import preprocess
+from scripts.data_management.data_preprocess_movies_metadata import preprocess_movies_md
 
 
 def build_top_chart(top_chart_num=250):
-    df = preprocess()
+    df = preprocess_movies_md()
 
     vote_counts = df[df['vote_count'].notnull()]['vote_count'].astype('float')
     vote_av = df[df['vote_average'].notnull()]['vote_average'].astype('float')
@@ -13,7 +13,7 @@ def build_top_chart(top_chart_num=250):
     qualified = df[
         (df['vote_count'].astype('float') >= min_votes) & (df['vote_count'].notnull()) & (df['vote_average'].notnull())
     ][
-        ['title', 'release_date', 'vote_count', 'vote_average', 'popularity', 'genres', 'id']
+        ['title', 'release_date', 'vote_count', 'vote_average', 'popularity', 'genres']
     ]
     qualified['vote_count'] = qualified['vote_count'].astype('float')
     qualified['vote_average'] = qualified['vote_average'].astype('float')
