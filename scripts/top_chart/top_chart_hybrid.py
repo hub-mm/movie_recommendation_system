@@ -44,11 +44,16 @@ def build_chart_hybrid(user_id=1, title='batman', amount=30):
 
     movie_indices = [i[0] for i in sim_scores]
     df = df.iloc[movie_indices][
-        ['title', 'release_date', 'vote_count', 'vote_average', 'popularity', 'genres', 'cast', 'id']
+        ['title', 'release_date', 'vote_count', 'vote_average', 'popularity', 'genres', 'cast', 'id', 'poster_path']
     ]
     df['est'] = df['id'].apply(lambda x: svd.predict(user_id, int(indices_map.loc[x]['moviesId']), r_ui=None).est)
 
     df['title'] = df['title'].fillna('').str.title()
     movies = df.sort_values('est', ascending=False)
 
-    return movies.head(amount)
+    base_url = 'https://image.tmdb.org/t/p/w500'
+    movies['poster_path'] = base_url + movies['poster_path'].astype(str)
+
+    movies = movies.head(amount).to_dict(orient='records')
+
+    return movies

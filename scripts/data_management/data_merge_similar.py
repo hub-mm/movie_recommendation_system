@@ -27,7 +27,7 @@ def preprocess_df():
     df = df[
         (df['vote_count'].astype('float') >= min_votes) & (df['vote_count'].notnull()) & (df['vote_average'].notnull())
         ][
-        ['title', 'release_date', 'vote_count', 'vote_average', 'popularity', 'genres', 'tagline', 'overview', 'id']
+        ['title', 'release_date', 'vote_count', 'vote_average', 'popularity', 'genres', 'tagline', 'overview', 'id', 'poster_path']
     ]
 
     df['title'] = df['title'].fillna('').str.lower()
