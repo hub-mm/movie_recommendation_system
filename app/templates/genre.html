@@ -1,0 +1,41 @@
+<!-- ./app/templates/genre.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>www</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1>what we watching</h1>
+        <button>sign in</button>
+    </div>
+    <div class="menu">
+        <button id="homeButton">home</button>
+        <button id="genreButton">genre</button>
+        <button id="ratingButton">rating</button>
+        <button id="similarButton">similar</button>
+    </div>
+    <div class="text-input">
+        <form action="{{ url_for('genre') }}" method="get">
+            <input type="text"
+                   name="genre"
+                   placeholder="eg: action"
+                   value="{{ request.args.get('genre', '') }}">
+            <button type="submit">submit</button>
+        </form>
+    </div>
+    <div class="images">
+        {% for movie in movies %}
+            <div class="image">
+                <img src="{{ movie.poster_path }}" alt="Poster for {{ movie.title }}">
+                <h2 class="title">{{ movie.title }}</h2>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
