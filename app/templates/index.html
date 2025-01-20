@@ -9,24 +9,33 @@
 </head>
 
 <body>
-    <div class="header">
-        <h1>what we watching</h1>
-        <button>sign in</button>
+<div class="header">
+    <h1>what we watching</h1>
+    <button>sign in</button>
+</div>
+<div class="menu">
+    <button id="homeButton">home</button>
+    <button id="genreButton">genre</button>
+    <button id="ratingButton">rating</button>
+    <button id="similarButton">similar</button>
+</div>
+<div class="movies">
+    {% for movie in movies %}
+    <div class="image">
+        <img class="movieImage" src="{{ movie.full_url }}" alt="Poster for {{ movie.title }}">
+        <div class="movieInfo" style="display: none;">
+            <h3><u>{{ movie.title|upper }}</u></h3>
+            <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+            <p><strong>Production Company:</strong> {{ movie.production_comp }}</p>
+            <p><strong>Genres:</strong> {{ movie.genres }}</p>
+            <p><strong>Language:</strong> {{ movie.original_language|upper }}</p>
+            <p><strong>Vote Average:</strong> {{ movie.vote_average }}/10</p>
+            <p>(Click to flip back)</p>
+        </div>
+        <h2 class="title">{{ movie.title }}</h2>
     </div>
-    <div class="menu">
-        <button id="homeButton">home</button>
-        <button id="genreButton">genre</button>
-        <button id="ratingButton">rating</button>
-        <button id="similarButton">similar</button>
-    </div>
-    <div class="images">
-        {% for movie in movies %}
-            <div class="image">
-                <img src="{{ movie.full_url }}" alt="Poster for {{ movie.title }}">
-                <h2 class="title">{{ movie.title }}</h2>
-            </div>
-        {% endfor %}
-    </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    {% endfor %}
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

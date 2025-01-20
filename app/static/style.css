@@ -57,16 +57,32 @@ body {
     cursor: pointer;
 }
 
-.images {
+.movies {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 20px 0;
     row-gap: 20px;
+    transition: all 0.3s ease;
+}
+
+.image{
+    transition: all 0.3s ease;
+}
+
+.movieInfo {
+    color: rgb(255, 0, 0);
+    width: 300px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: left;
+    cursor: pointer;
 }
 
 .title {
-    color: rgb(256, 256, 256);
+    color: rgb(255, 255, 255);
     background-color: rgba(100, 100, 100, 0.25);
     width: 300px;
     text-align: center;
@@ -98,7 +114,7 @@ button {
 button:hover,
 button.active {
     background-color: rgb(200, 0, 0);
-    color: rgb(256, 256, 256);
+    color: rgb(255, 255, 255);
 }
 
 input[type=text] {
@@ -110,4 +126,5 @@ input[type=text] {
 img {
     height: 350px;
     width: 300px;
+    cursor: pointer;
 }

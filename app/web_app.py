@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/home')
 def home():
-    movies = main_func(5)
+    movies = main_func(5, amount=20)
     return render_template('index.html', movies=movies)
 
 @app.route('/rating')

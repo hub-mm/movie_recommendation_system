@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
-
     const currentPath = window.location.pathname;
     const pathToButton = {
         '/home': homeButton,
@@ -42,4 +41,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+
+    const movies = document.querySelectorAll('.image');
+    movies.forEach(container => {
+        const movieImg = container.querySelector('.movieImage');
+        const movieInfoDiv = container.querySelector('.movieInfo');
+
+        container.dataset.state = 'image';
+        container.addEventListener('click', function() {
+            if (container.dataset.state === 'image') {
+                movieImg.style.display = 'none';
+                movieInfoDiv.style.display = 'flex';
+                container.dataset.state = 'info';
+            } else {
+                movieInfoDiv.style.display = 'none';
+                movieImg.style.display = 'block';
+                container.dataset.state = 'image';
+            }
+        });
+    });
 });
