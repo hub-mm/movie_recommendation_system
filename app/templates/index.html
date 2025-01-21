@@ -21,7 +21,7 @@
 </div>
 <div class="movies">
     {% for movie in movies %}
-    <div class="image">
+    <div class="movie">
         <img class="movieImage" src="{{ movie.full_url }}" alt="Poster for {{ movie.title }}">
         <div class="movieInfo" style="display: none;">
             <h3><u>{{ movie.title|upper }}</u></h3>
@@ -35,6 +35,13 @@
         <h2 class="title">{{ movie.title }}</h2>
     </div>
     {% endfor %}
+</div>
+<div class="amount">
+    <p>show how many films: </p>
+    <a href="{{ url_for('home', amount=10) }}"><button id="amount10Button">10</button></a>
+    <a href="{{ url_for('home', amount=25) }}"><button id="amount25Button">25</button></a>
+    <a href="{{ url_for('home', amount=50) }}"><button id="amount50Button">50</button></a>
+    <a href="{{ url_for('home', amount=100) }}"><button id="amount100Button">100</button></a>
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

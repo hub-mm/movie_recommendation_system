@@ -63,20 +63,21 @@ body {
     justify-content: space-evenly;
     padding: 20px 0;
     row-gap: 20px;
-    transition: all 0.3s ease;
 }
 
-.image{
-    transition: all 0.3s ease;
+.movieImage {
+    height: 350px;
+    width: 300px;
+    cursor: pointer;
 }
 
 .movieInfo {
-    color: rgb(255, 0, 0);
+    color: rgba(200, 200, 200, 0.75);
     width: 300px;
     height: 350px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     text-align: left;
     cursor: pointer;
 }
@@ -88,6 +89,24 @@ body {
     text-align: center;
     font-size: 20px;
     font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.amount {
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px
+}
+
+.amount button{
+    height: 20px;
+    padding: 0 20px;
+}
+
+.amount p {
+    color: white;
     letter-spacing: 2px;
 }
 
@@ -121,10 +140,4 @@ input[type=text] {
     width: 300px;
     height: 25px;
     font-size: 18px;
-}
-
-img {
-    height: 350px;
-    width: 300px;
-    cursor: pointer;
 }

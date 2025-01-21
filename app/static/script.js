@@ -42,7 +42,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    const movies = document.querySelectorAll('.image');
+    const amountButtons = {
+        '10': document.getElementById('amount10Button'),
+        '25': document.getElementById('amount25Button'),
+        '50': document.getElementById('amount50Button'),
+        '100': document.getElementById('amount100Button')
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const amountParam = urlParams.get('amount');
+
+    if (amountParam && amountButtons[amountParam]) {
+        amountButtons[amountParam].classList.add('active');
+    }
+
+
+    const movies = document.querySelectorAll('.movie');
     movies.forEach(container => {
         const movieImg = container.querySelector('.movieImage');
         const movieInfoDiv = container.querySelector('.movieInfo');
