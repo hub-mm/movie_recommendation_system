@@ -44,7 +44,17 @@ def build_chart_hybrid(user_id=1, title='batman', amount=30):
 
     movie_indices = [i[0] for i in sim_scores]
     df = df.iloc[movie_indices][
-        ['title', 'release_date', 'vote_count', 'vote_average', 'popularity', 'genres', 'cast', 'id', 'poster_path']
+        [
+            'title',
+            'release_date',
+            'vote_count',
+            'vote_average',
+            'popularity',
+            'genres',
+            'cast',
+            'id',
+            'poster_path'
+        ]
     ]
     df['est'] = df['id'].apply(lambda x: svd.predict(user_id, int(indices_map.loc[x]['moviesId']), r_ui=None).est)
 

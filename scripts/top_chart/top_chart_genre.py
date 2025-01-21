@@ -23,7 +23,17 @@ def build_genre_chart(genre, top_chart_num=250, amount=10):
     qualified = df[
         (df['vote_count'].astype('float') >= min_votes) & (df['vote_count'].notnull()) & (df['vote_average'].notnull())
         ][
-        ['title', 'release_date', 'vote_count', 'vote_average', 'popularity', 'poster_path']
+        [
+            'title',
+            'release_date',
+            'vote_count',
+            'vote_average',
+            'popularity',
+            'genre',
+            'poster_path',
+            'production_companies',
+            'original_language'
+        ]
     ]
     base_url = 'https://image.tmdb.org/t/p/w500'
     qualified['poster_path'] = base_url + qualified['poster_path'].astype(str)
