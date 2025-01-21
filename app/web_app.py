@@ -1,6 +1,6 @@
 # ./app/web_app.py
 from main import main_func
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, request, render_template
 import ast
 
 app = Flask(__name__)
