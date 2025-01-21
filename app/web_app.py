@@ -31,8 +31,8 @@ def rating():
 
 @app.route('/genre')
 def genre():
-    amount = request.args.get('amount', 10, type=int)
     genre_val = request.args.get('genre', 'action').strip()
+    amount = request.args.get('amount', 10, type=int)
     movies = main_func(2, amount=amount, genre=genre_val)
     for movie in movies:
         production_companies = movie['production_companies']
@@ -44,8 +44,8 @@ def genre():
 
 @app.route('/similar')
 def similar():
-    amount = request.args.get('amount', 10, type=int)
     title_val = request.args.get('title', 'The Godfather').strip().lower()
+    amount = request.args.get('amount', 10, type=int)
     movies = main_func(3, amount=amount, title=title_val)
     for movie in movies:
         genres = movie['genres']
@@ -60,4 +60,4 @@ def similar():
 
 
 if __name__ == '__main__':
-    app.run(port=8000, debug=False)
+    app.run(port=8000, debug=True)

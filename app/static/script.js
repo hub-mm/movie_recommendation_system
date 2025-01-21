@@ -1,5 +1,5 @@
-// ./app/static/script.js
 document.addEventListener('DOMContentLoaded', function() {
+    // Navigation buttons
     const homeButton = document.getElementById('homeButton');
     const genreButton = document.getElementById('genreButton');
     const ratingButton = document.getElementById('ratingButton');
@@ -7,24 +7,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (homeButton) {
         homeButton.addEventListener('click', function() {
-            window.location.href = '/home'
+            window.location.href = '/home';
         });
-    };
+    }
     if (genreButton) {
         genreButton.addEventListener('click', function() {
-            window.location.href = '/genre'
+            window.location.href = '/genre';
         });
-    };
+    }
     if (ratingButton) {
         ratingButton.addEventListener('click', function() {
-            window.location.href = '/rating'
+            window.location.href = '/rating';
         });
-    };
+    }
     if (similarButton) {
         similarButton.addEventListener('click', function() {
-            window.location.href = '/similar'
+            window.location.href = '/similar';
         });
-    };
+    }
 
     const currentPath = window.location.pathname;
     const pathToButton = {
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Amount buttons for the Genre page
     const amountButtons = {
         '10': document.getElementById('amount10Button'),
         '25': document.getElementById('amount25Button'),
@@ -49,14 +50,45 @@ document.addEventListener('DOMContentLoaded', function() {
         '100': document.getElementById('amount100Button')
     };
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const amountParam = urlParams.get('amount');
-
-    if (amountParam && amountButtons[amountParam]) {
-        amountButtons[amountParam].classList.add('active');
+    for (const key in amountButtons) {
+        if (amountButtons.hasOwnProperty(key) && amountButtons[key]) {
+            amountButtons[key].addEventListener('click', function() {
+                // Get the current genre from the genre input field
+                const genreInput = document.getElementById('genreInput');
+                let currentGenre = genreInput ? genreInput.value.trim() : '';
+                // If it is empty, fall back to URL parameter or default 'action'
+                if (!currentGenre) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    currentGenre = urlParams.get('genre') || 'action';
+                }
+                window.location.href = `/genre?genre=${encodeURIComponent(currentGenre)}&amount=${key}`;
+            });
+        }
     }
 
+    // Amount buttons for the Similar page
+    const simAmountButtons = {
+        '10': document.getElementById('simAmount10Button'),
+        '25': document.getElementById('simAmount25Button'),
+        '50': document.getElementById('simAmount50Button')
+    };
 
+    for (const key in simAmountButtons) {
+        if (simAmountButtons.hasOwnProperty(key) && simAmountButtons[key]) {
+            simAmountButtons[key].addEventListener('click', function() {
+                // Get the current title from the title input field
+                const titleInput = document.getElementById('titleInput');
+                let currentTitle = titleInput ? titleInput.value.trim() : '';
+                if (!currentTitle) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    currentTitle = urlParams.get('title') || 'The Godfather';
+                }
+                window.location.href = `/similar?title=${encodeURIComponent(currentTitle)}&amount=${key}`;
+            });
+        }
+    }
+
+    // Toggling movie details from image (unchanged code)
     const movies = document.querySelectorAll('.movie');
     movies.forEach(container => {
         const movieImg = container.querySelector('.movieImage');

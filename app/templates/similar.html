@@ -22,6 +22,7 @@
 <div class="text-input">
     <form action="{{ url_for('similar') }}" method="get">
         <input type="text"
+               id="titleInput"
                name="title"
                placeholder="eg: The Godfather"
                value="{{ request.args.get('title', '') }}">
@@ -44,11 +45,11 @@
     </div>
     {% endfor %}
 </div>
-<<div class="amount">
+<div class="amount">
     <p>show how many films: </p>
-    <a href="{{ url_for('similar', amount=10) }}"><button id="amount10Button">10</button></a>
-    <a href="{{ url_for('similar', amount=25) }}"><button id="amount25Button">25</button></a>
-    <a href="{{ url_for('similar', amount=50) }}"><button id="amount50Button">50</button></a>
+    <button id="simAmount10Button">10</button>
+    <button id="simAmount25Button">25</button>
+    <button id="simAmount50Button">50</button>
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
