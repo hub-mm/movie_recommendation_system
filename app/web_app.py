@@ -10,6 +10,7 @@ app = Flask(__name__)
 def home():
     amount = request.args.get('amount', 10, type=int)
     movies = main_func(4, amount=amount)
+
     return render_template('index.html', movies=movies)
 
 
@@ -58,9 +59,16 @@ def similar():
 
     return render_template('similar.html', movies=movies)
 
+
 @app.route('/sign_in')
 def sign_in():
     return render_template('sign_in.html')
+
+
+@app.route('/new_user')
+def new_user():
+    return render_template('new_user.html')
+
 
 if __name__ == '__main__':
     app.run(port=8000, debug=False)

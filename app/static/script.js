@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Navigation buttons
     const homeButton = document.getElementById('homeButton');
     const genreButton = document.getElementById('genreButton');
     const ratingButton = document.getElementById('ratingButton');
     const similarButton = document.getElementById('similarButton');
     const signInButton = document.getElementById('signInButton');
+    const newUserButton = document.getElementById('newUserButton');
 
     if (homeButton) {
         homeButton.addEventListener('click', function() {
@@ -31,6 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = '/sign_in';
         });
     }
+    if (newUserButton) {
+        newUserButton.addEventListener('click', function() {
+            window.location.href = '/new_user';
+        });
+    }
 
     const currentPath = window.location.pathname;
     const pathToButton = {
@@ -54,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
         '50': document.getElementById('amount50Button'),
         '100': document.getElementById('amount100Button')
     };
-
     for (const key in amountButtons) {
         if (amountButtons.hasOwnProperty(key) && amountButtons[key]) {
             amountButtons[key].addEventListener('click', function() {
@@ -74,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
         '25': document.getElementById('simAmount25Button'),
         '50': document.getElementById('simAmount50Button')
     };
-
     for (const key in simAmountButtons) {
         if (simAmountButtons.hasOwnProperty(key) && simAmountButtons[key]) {
             simAmountButtons[key].addEventListener('click', function() {

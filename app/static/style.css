@@ -73,8 +73,8 @@ body {
 
 .movieInfo {
     color: rgba(200, 200, 200, 0.75);
-    width: 300px;
     height: 350px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -112,6 +112,7 @@ body {
 
 .sign-in-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -119,13 +120,18 @@ body {
 }
 
 .sign-in {
-    background-color: rgba(50, 50, 50, 0.3);
     color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.1);
     padding: 75px 100px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 20px
+}
+
+.sign-in form {
+    display: flex;
+    flex-direction: column;
     gap: 10px
 }
 
@@ -136,6 +142,14 @@ body {
 }
 
 .user-buttons button {
+    padding: 5px;
+}
+
+.new-user-button {
+    align-self: flex-end;
+}
+
+.new-user-button button {
     padding: 5px;
 }
 
@@ -166,7 +180,8 @@ button.active {
 }
 
 input[type=text],
-input[type=password] {
+input[type=password],
+input[type=email] {
     width: 300px;
     height: 25px;
     font-size: 18px;
