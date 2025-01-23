@@ -38,10 +38,10 @@
 </div>
 <div class="amount">
     <p>show how many films: </p>
-    <a href="{{ url_for('home', amount=10) }}"><button id="amount10Button">10</button></a>
-    <a href="{{ url_for('home', amount=25) }}"><button id="amount25Button">25</button></a>
-    <a href="{{ url_for('home', amount=50) }}"><button id="amount50Button">50</button></a>
-    <a href="{{ url_for('home', amount=100) }}"><button id="amount100Button">100</button></a>
+    <a href="{{ url_for('home', amount=10) }}"><button>10</button></a>
+    <a href="{{ url_for('home', amount=25) }}"><button>25</button></a>
+    <a href="{{ url_for('home', amount=50) }}"><button>50</button></a>
+    <a href="{{ url_for('home', amount=100) }}"><button>100</button></a>
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

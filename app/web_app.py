@@ -58,6 +58,9 @@ def similar():
 
     return render_template('similar.html', movies=movies)
 
+@app.route('/sign_in')
+def sign_in():
+    return render_template('sign_in.html')
 
 if __name__ == '__main__':
     app.run(port=8000, debug=False)
