@@ -1,0 +1,29 @@
+<!-- ./app/templates/sign_in.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>www</title>
+</head>
+
+<body>
+<div class="header">
+    <h1>what we watching</h1>
+    <button id="homeButton">home</button>
+</div>
+<div class="sign-in-container">
+    <form class="sign-in">
+        <h3>sign in</h3>
+        <input type="text" placeholder="username">
+        <input type="password" placeholder="password">
+        <div class="user-buttons">
+            <button id="newUserButton">register new user</button>
+            <button id="confirm">confirm</button>
+        </div>
+    </form>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
