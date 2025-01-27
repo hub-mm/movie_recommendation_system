@@ -160,7 +160,6 @@ def new_user():
     return render_template('new_user.html')
 
 
-# @app.route('/user_page')
 @app.route('/user_page/<name>')
 def user_page(name=None):
     session_username = session.get('username')
