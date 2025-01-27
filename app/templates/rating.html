@@ -10,7 +10,7 @@
 
 <body>
 <div class="header">
-    <h1>what we watching</h1>
+    <h1>what we watching?</h1>
     {% if name %}
         <button id="userPageButton" data-username="{{ name }}">user page</button>
     {% else %}
@@ -36,7 +36,10 @@
             <p><strong>Vote Average:</strong> {{ movie.vote_average }}/10</p>
             <p>(Click to flip back)</p>
         </div>
-        <h2 class="title">{{ movie.title }}</h2>
+        <div class="title">
+            <h2>{{ movie.title }}</h2>
+            <button>+</button>
+        </div>
     </div>
     {% endfor %}
 </div>

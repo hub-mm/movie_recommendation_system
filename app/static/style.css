@@ -3,7 +3,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Courier New', 'Lucida Console', 'Monaco'
+    font-family: 'Courier New', 'Lucida Console', 'Monaco';
 }
 
 body {
@@ -89,31 +89,60 @@ body {
     row-gap: 20px;
 }
 
+.movieImage:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px 10px rgb(200, 0, 0);
+    transition: 0.5s ease;
+}
+
 .movieImage {
+    color: rgb(255, 255, 255);
     height: 350px;
     width: 300px;
     cursor: pointer;
+    transition: 0.5s ease;
 }
 
 .movieInfo {
-    color: rgba(200, 200, 200, 0.75);
+    color: rgba(255, 255, 255, 0.9);
     height: 350px;
     width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    text-align: left;
     cursor: pointer;
+    transition: 0.5s ease;
 }
 
 .title {
-    color: rgb(255, 255, 255);
     background-color: rgba(100, 100, 100, 0.25);
-    width: 300px;
-    text-align: center;
-    font-size: 20px;
+    width: 326px;
+    margin-top: 5px;
+    margin-left: -13px;
+    min-height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title:hover h2 {
+    cursor: pointer;
+}
+
+.title h2 {
+    color: rgb(255, 255, 255);
+    width: 260px;
+    font-size: 14px;
     font-weight: bold;
     letter-spacing: 2px;
+    padding: 5px;
+}
+
+.title button {
+    width: 35px;
+    min-height: 45px;
+    font-weight: bold;
+    margin-right: -10px;
 }
 
 .amount {
@@ -121,7 +150,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px
+    gap: 15px;
 }
 
 .amount button{
