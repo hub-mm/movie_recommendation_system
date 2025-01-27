@@ -10,3 +10,4 @@ __pycache__
 # project files
 data
 model
+config.py
