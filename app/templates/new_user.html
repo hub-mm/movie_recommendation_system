@@ -16,14 +16,30 @@
 <div class="sign-in-container">
     <div class="sign-in">
         <h3>register new user</h3>
-        <form>
-            <input type="email" placeholder="email">
-            <input type="text" placeholder="username">
-            <input type="password" placeholder="password">
+        <form action="{{ url_for('new_user') }}" method="post">
+            <label for="email">email:</label>
+            <input type="email"
+                   name="email"
+                   required>
+            <label for="username">username:</label>
+            <input type="text"
+                   name="username"
+                   required>
+            <label for="password">password:</label>
+            <input type="password"
+                   name="password"
+                   required>
+            <div class="new-user-button">
+                <button type="submit" id="confirm">confirm</button>
+            </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
         </form>
-        <div class="new-user-button">
-            <button id="confirm">confirm</button>
-        </div>
     </div>
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>

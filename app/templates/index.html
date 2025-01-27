@@ -5,18 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>www</title>
+    <title>www: home</title>
 </head>
 
 <body>
 <div class="header">
     <h1>what we watching</h1>
-    <button id="signInButton">sign in</button>
+    {% if name %}
+        <button id="userPageButton" data-username="{{ name }}">user page</button>
+    {% else %}
+        <button id="signInButton">sign in</button>
+    {% endif %}
 </div>
 <div class="menu">
     <button id="homeButton">home</button>
-    <button id="genreButton">genre</button>
     <button id="ratingButton">rating</button>
+    <button id="genreButton">genre</button>
     <button id="similarButton">similar</button>
 </div>
 <div class="movies">

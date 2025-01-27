@@ -26,6 +26,30 @@ body {
     letter-spacing: 1px;
 }
 
+.favContent {
+    display: none;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 0, 0);
+    margin-top: -20px;
+    margin-inline: 30px;
+    padding: 0 10px;
+}
+
+.favourite {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 0, 0);
+    margin: 25px;
+    padding: 0 10px;
+    border-radius: 2px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+#shut {
+    display: none;
+}
+
 .menu {
     display: flex;
     justify-content: space-evenly;
@@ -137,6 +161,7 @@ body {
 
 .user-buttons {
     width: 100%;
+    padding-top: 10px;
     display: flex;
     justify-content: space-between;
 }
@@ -147,10 +172,21 @@ body {
 
 .new-user-button {
     align-self: flex-end;
+    padding-top: 10px;
 }
 
 .new-user-button button {
     padding: 5px;
+}
+
+.alert-danger {
+    color: rgb(255, 0, 0);
+    width: 300px;
+}
+
+.alert-success {
+    color: rgb(0, 255, 0);
+    width: 300px;
 }
 
 h1 {

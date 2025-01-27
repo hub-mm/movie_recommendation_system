@@ -1,0 +1,30 @@
+<!-- ./app/templates/user_page.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>www: {{ name }}</title>
+</head>
+
+<body>
+<div class="header">
+    <h1>what we watching</h1>
+    <button id="homeButton">home</button>
+</div>
+<div class="header">
+    <h1>hi {{ name }}</h1>
+    <button id="signOutButton" onclick="location.href='{{ url_for('sign_out') }}'">sign out</button>
+</div>
+<div class="favourite" onclick="toggleContent(this)">
+    <h2>Favourite</h2>
+    <h2 id="open">↵</h2>
+    <h2 id="shut">↴</h2>
+</div>
+<div class="favContent">
+    <p>wagwan</p>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
