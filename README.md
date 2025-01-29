@@ -13,7 +13,7 @@ The application also allows you to view random selections of films, filter by ge
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Project Structure](#project-structure)
-- [Screenshots](#screenshots)
+- [App Screenshots](#app-screenshots)
 - [Usage](#usage)
 - [Notes](#notes)
 - [Contributions](#contributions)
