@@ -142,6 +142,8 @@ Otherwise, place the “movies dataset” files in the correct location manually
 ## App Screenshots
 ### Home menu
 ![home page image](./img_README/home_page.png)
+### Click On The Film For More Info
+![click for info](./img_README/click_info.png)
 ### Menu Options
 ![menu options image](./img_README/options.png)
 ### Similar Films to Avatar
