@@ -23,7 +23,34 @@
     <h2 id="shut">↴</h2>
 </div>
 <div class="favContent">
-    <p>wagwan</p>
+    {% if favourites %}
+    <div class="favourites-list">
+        {% for movie in favourites %}
+        <div class="movies">
+            <div class="movie">
+                <div class="imageInfo">
+                    <img class="movieImage" src="{{ movie.full_url }}" alt="Poster for {{ movie.title }}">
+                    <div class="movieInfo" style="display: none;">
+                        <h3><u>{{ movie.title }}</u></h3>
+                        <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+                        <p><strong>Production Company:</strong> {{ movie.production_comp }}</p>
+                        <p><strong>Genres:</strong> {{ movie.genres }}</p>
+                        <p><strong>Language:</strong> {{ movie.original_language|upper }}</p>
+                        <p><strong>Vote Average:</strong> {{ movie.vote_average }}/10</p>
+                        <p>(Click to flip back)</p>
+                    </div>
+                </div>
+                <div class="title">
+                    <h2>{{ movie.title }}</h2>
+                    <button class="removeFavouriteButton" data-movie="{{ movie.title }}">X</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>You haven't added any favourites yet.</p>
+    {% endif %}
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

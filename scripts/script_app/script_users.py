@@ -11,8 +11,22 @@ class User:
         self.email = email
         self.username = username.lower()
         self.password = self.hash_password(password)
+        self.favourites = []
         User.user_base[self.user_id] = self
         User.user_id_counter += 1
+
+    def add_favourite(self, movie):
+        if not any(fav['title'] == movie['title'] for fav in self.favourites):
+            self.favourites.append(movie)
+            return f"{movie['title']} added to favourites."
+        return f"{movie['title']} is already in favourites."
+
+    def remove_favourite(self, title):
+        for fav in self.favourites:
+            if fav['title'] == title:
+                self.favourites.remove(fav)
+                return f"{title} removed from favourites."
+        return f"{title} is not in favourites."
 
     @staticmethod
     def hash_password(password):

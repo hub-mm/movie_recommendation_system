@@ -29,15 +29,22 @@ body {
 .favContent {
     display: none;
     color: rgb(255, 255, 255);
-    background-color: rgb(255, 0, 0);
+    background-color: rgba(200, 0, 0, 0.5);
     margin-top: -20px;
     margin-inline: 30px;
-    padding: 0 10px;
+}
+
+.favourites-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+    padding: 10px;
 }
 
 .favourite {
     color: rgb(255, 255, 255);
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(200, 0, 0);
     margin: 25px;
     padding: 0 10px;
     border-radius: 2px;
@@ -89,6 +96,10 @@ body {
     row-gap: 20px;
 }
 
+.movie {
+    margin: 0 15px;
+}
+
 .movieImage:hover {
     cursor: pointer;
     box-shadow: 0 0 5px 10px rgb(200, 0, 0);
@@ -127,6 +138,7 @@ body {
 
 .title:hover h2 {
     cursor: pointer;
+    font-size: 16px;
 }
 
 .title h2 {
@@ -216,6 +228,28 @@ body {
 .alert-success {
     color: rgb(0, 255, 0);
     width: 300px;
+}
+
+.message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+    opacity: 0.9;
+}
+
+.message.success {
+    background-color: rgb(0, 150, 0);
+    color: rgb(255, 255, 255);
+}
+
+.message.error {
+    background-color: rgb(200, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 h1 {

@@ -44,6 +44,60 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    const addFavouriteButton = document.querySelectorAll('.addFavouriteButton');
+    addFavouriteButton.forEach(button => {
+        button.addEventListener('click', () => {
+            const movie = button.getAttribute('data-movie');
+
+            fetch('/add_favourite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ movie: movie }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.error) {
+                        displayMessage(data.error, 'error');
+                    } else {
+                        displayMessage(data.message, 'success');
+                        button.textContent = '✔';
+                        button.disabled = true;
+                        button.classList.add('added');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    displayMessage('An unexpected error occurred.', 'error');
+                });
+        });
+    });
+
+    const removeFavouriteButtons = document.querySelectorAll('.removeFavouriteButton');
+    removeFavouriteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const title = button.getAttribute('data-movie');
+
+            fetch('/remove_favourite', {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ title: title })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    displayMessage(data.error);
+                } else {
+                    displayMessage(data.message);
+                    button.closest('.movie').remove();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+
+
     const currentPath = window.location.pathname;
     const pathToButton = {
         '/home': homeButton,
@@ -99,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    const movies = document.querySelectorAll('.movie');
+    const movies = document.querySelectorAll('.imageInfo');
     movies.forEach(container => {
         const movieImg = container.querySelector('.movieImage');
         const movieInfoDiv = container.querySelector('.movieInfo');
@@ -138,4 +192,15 @@ function toggleContent(favDiv) {
             toggleShut.style.display = 'none';
         }
     }
+}
+
+function displayMessage(message, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.textContent = message;
+    messageDiv.className = `message ${type}`;
+    document.body.appendChild(messageDiv);
+
+    setTimeout(() => {
+        messageDiv.remove();
+    }, 3000);
 }

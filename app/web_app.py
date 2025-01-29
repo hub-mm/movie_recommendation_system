@@ -2,9 +2,12 @@
 from main import main_func
 from scripts.script_app.script_users import User
 from config import SECRET_KEY_MOVIES
-from flask import Flask, request, render_template, redirect, url_for, session, flash
+from flask import Flask, request, render_template, redirect, url_for, session, flash, jsonify
 import ast
 import validators
+import pickle
+import json
+import re
 
 
 app = Flask(__name__)
@@ -163,12 +166,95 @@ def new_user():
 @app.route('/user_page/<name>')
 def user_page(name=None):
     session_username = session.get('username')
-    return render_template('user_page.html', name=session_username)
+    if not session_username:
+        flash('You must be signed in to view your user page.', 'danger')
+        return redirect(url_for('sign_in'))
+
+    if session_username != name:
+        flash('Access denied. You can only view your own user page.', 'danger')
+        return redirect(url_for('home'))
+
+    try:
+        user = User.get_user(session_username)
+        favourites = user.favourites
+        return render_template('user_page.html', name=session_username, favourites=favourites)
+    except ValueError as e:
+        flash(str(e), 'danger')
+        return redirect(url_for('home'))
 
 @app.route('/sign_out')
 def sign_out():
     session.clear()
     return redirect(url_for('home'))
+
+@app.route('/add_favourite', methods=['POST'])
+def add_favourite():
+    if 'username' not in session:
+        return jsonify({'error': 'User not logged in'}), 401
+
+    username = session['username']
+
+    raw_movie = request.json.get('movie')
+    print(f"Raw movie type: {type(raw_movie)}, value: {raw_movie}")
+
+    if not raw_movie:
+        return jsonify({'error': 'No movie data provided.'}), 400
+
+    try:
+        if isinstance(raw_movie, dict):
+            movie = raw_movie
+        elif isinstance(raw_movie, str):
+            raw_movie = raw_movie.replace("'", "\"")
+
+            raw_movie = re.sub(r'datetime\.date\((\d+), (\d+), (\d+)\)', r'"\1-\2-\3"', raw_movie)
+
+            movie = json.loads(raw_movie)
+        else:
+            raise ValueError('Movie data is in an unsupported format.')
+
+        if not isinstance(movie, dict):
+            raise ValueError('Parsed movie data is not a dictionary.')
+
+    except (ValueError, json.JSONDecodeError, SyntaxError) as e:
+        print(f"Error: {e}")
+        print(f"Raw movie type: {type(raw_movie)}, value: {raw_movie}")
+        return jsonify({'error': 'Invalid movie data format.'}), 400
+
+    print(f"Processed movie: {movie}")
+    print(f"Movie type: {type(movie)}")
+
+    try:
+        user = User.get_user(username)
+        message = user.add_favourite(movie)
+        return jsonify({'message': message, 'favourites': user.favourites}), 200
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+
+@app.route('/remove_favourite', methods=['POST'])
+def remove_favourite():
+    if 'username' not in session:
+        return jsonify({'error': 'User not logged in'}), 401
+
+    username = session['username']
+
+    movie_title = request.json.get('title')
+
+    if not movie_title:
+        return jsonify({'error': 'No movie title provided.'}), 400
+
+    try:
+        user = User.get_user(username)
+        message = user.remove_favourite(movie_title)
+        return jsonify({'message': message, 'favourites': user.favourites}), 200
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+
+def get_movie_info(title):
+    file_path = './data/user_built/preprocessed_df.pkl'
+    with open(file_path, 'rb') as f:
+        movie_data = pickle.load(f)
+
+    return movie_data.get(title, None)
 
 if __name__ == '__main__':
     app.run(port=8000, debug=False)

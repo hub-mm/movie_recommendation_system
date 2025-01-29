@@ -12,9 +12,9 @@
 <div class="header">
     <h1>what we watching?</h1>
     {% if name %}
-        <button id="userPageButton" data-username="{{ name }}">user page</button>
+    <button id="userPageButton" data-username="{{ name }}">user page</button>
     {% else %}
-        <button id="signInButton">sign in</button>
+    <button id="signInButton">sign in</button>
     {% endif %}
 </div>
 <div class="menu">
@@ -36,19 +36,21 @@
 <div class="movies">
     {% for movie in movies %}
     <div class="movie">
-        <img class="movieImage" src="{{ movie.poster_path }}" alt="Poster for {{ movie.title }}">
-        <div class="movieInfo" style="display: none;">
-            <h3><u>{{ movie.title|upper }}</u></h3>
-            <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
-            <p><strong>Production Company:</strong> {{ movie.production_companies }}</p>
-            <p><strong>Genres:</strong> {{ movie.genre }}</p>
-            <p><strong>Language:</strong> {{ movie.original_language|upper }}</p>
-            <p><strong>Vote Average:</strong> {{ movie.vote_average }}/10</p>
-            <p>(Click to flip back)</p>
+        <div class="imageInfo">
+            <img class="movieImage" src="{{ movie.poster_path }}" alt="Poster for {{ movie.title }}">
+            <div class="movieInfo" style="display: none;">
+                <h3><u>{{ movie.title|upper }}</u></h3>
+                <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+                <p><strong>Production Company:</strong> {{ movie.production_companies }}</p>
+                <p><strong>Genres:</strong> {{ movie.genre }}</p>
+                <p><strong>Language:</strong> {{ movie.original_language|upper }}</p>
+                <p><strong>Vote Average:</strong> {{ movie.vote_average }}/10</p>
+                <p>(Click to flip back)</p>
+            </div>
         </div>
         <div class="title">
             <h2>{{ movie.title }}</h2>
-            <button>+</button>
+            <button class="addFavouriteButton" data-movie="{{ movie }}">+</button>
         </div>
     </div>
     {% endfor %}
