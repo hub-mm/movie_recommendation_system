@@ -13,6 +13,7 @@ The application also allows you to view random selections of films, filter by ge
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Project Structure](#project-structure)
+- [Screenshots](#screenshots)
 - [Usage](#usage)
 - [Notes](#notes)
 - [Contributions](#contributions)
@@ -137,6 +138,28 @@ Otherwise, place the “movies dataset” files in the correct location manually
 - scripts/script_app/random_image.py: Provides random film posters.
 - scripts/script_app/script_users.py: User class.
 - model/: Stores the pickled collaborative filtering model.
+
+## App Screenshots
+### Home menu
+![home page image](./img_README/home_page.png)
+### Menu Options
+![menu options image](./img_README/options.png)
+### Similar Films to Avatar
+***Some film images arent available due to possible old link.  
+Home menu filters through images to try minimise redundant links.***
+![similar films option](./img_README/similar.png)
+### Choose How Many Films To Display
+![number selector at bottom of page](./img_README/num_to_show.png)
+### Login Page
+![user login page](./img_README/login_page.png)
+### Create User Page
+![create user page](./img_README/create_user.png)
+### Add Film To Favourite 
+![add film to favourite with confirm message](./img_README/add_fav.png)
+### User Page
+![user page with drop down menu](./img_README/user_page.png)
+### User Page Favourite Films
+![user page favourite films list](./img_README/user_page_fav.png)
 
 ## Usage
 1. **Run the Flask App:**
