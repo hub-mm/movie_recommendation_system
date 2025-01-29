@@ -80,9 +80,13 @@ Otherwise, place the “movies dataset” files in the correct location manually
     │   ├── templates
     │   │   ├── genre.html
     │   │   ├── index.html
+    │   │   ├── new_user.html
     │   │   ├── rating.html
-    │   │   └── similar.html
+    │   │   ├── sign_in.html
+    │   │   ├── similar.html
+    │   │   └── user_page.html
     │   └── web_app.py
+    ├── config.py
     ├── data
     │   ├── movies_dataset
     │   │   └── 7
@@ -117,13 +121,13 @@ Otherwise, place the “movies dataset” files in the correct location manually
         │   ├── data_preprocess_movies_metadata_posters.py
         │   └── data_preprocess_ratings.py
         ├── script_app
-        │   └── random_image.py
+        │   ├── random_image.py
+        │   └── script_users.py
         └── top_chart
             ├── top_chart_genre.py
             ├── top_chart_hybrid.py
             ├── top_chart_rating.py
             └── top_chart_similar.py
-    
 ```
 - app/web_app.py: Main Flask application file defining the routes.
 - app/templates/*.html: HTML templates for each route (home, rating, genre, similar).
@@ -131,6 +135,7 @@ Otherwise, place the “movies dataset” files in the correct location manually
 - scripts/data_management/: Scripts to download, preprocess, and merge datasets.
 - scripts/top_chart/: Scripts generating top charts or recommendations based on various criteria.
 - scripts/script_app/random_image.py: Provides random film posters.
+- scripts/script_app/script_users.py: User class.
 - model/: Stores the pickled collaborative filtering model.
 
 ## Usage
@@ -145,6 +150,8 @@ Otherwise, place the “movies dataset” files in the correct location manually
      - **Genre** - filter by genre
      - **Rating** - top-rated films
      - **Similar** -  find similar films using hybrid filtering
+     - **Login and Create User** - log in to start session and have user specific info
+     - **User Page** - page with user specific favourite films
 3. **Adjust Parameters:**
 - Use the query parameters in the URL or the interface’s text input to control the number of films displayed, 
 the genre choice, or the film title for similarity.
